@@ -12,6 +12,7 @@ export class ViewModel
         //todo
     }
     
+    framework: string;
     fileName: string;
     constructor(init?: Partial<ViewModel>) {
         Object.assign(this, init);
@@ -46,11 +47,11 @@ export class TreeItemVm
 export class NameSpaceVm  
 {
     name: string;
-    framework: string;
     isDirectory: string;
     comment: string;
     parent: NameSpaceVm;
     children: NameSpaceVm[] = []; 
+    controls: ControlVm[] = [];
     constructor(init?: Partial<NameSpaceVm>) 
     {
         Object.assign(this, init);

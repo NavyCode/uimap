@@ -1,9 +1,58 @@
-import { NameSpaceVm, ViewModel } from "../viewmodel";
+import { ControlVm, NameSpaceVm, SearchProperty, ViewModel } from "../viewmodel";
 import { Outcome, WiState } from "src/app/api/reports/swagger";
 
 export class ViewModelTemplate {
-    static Create(): ViewModel {
+    static Create(): ViewModelTemplate {
         let result = new ViewModel({ 
+            framework: "playwrite",
+            fileName: "uimap.xml",
+            rootNs: new NameSpaceVm({
+                name: "google",
+                comment: "google.com",
+                children:[
+                    new NameSpaceVm(
+                        {
+                            name: "main",
+                            comment: "Main page",
+                            controls: [
+                                new ControlVm(
+                                    {
+                                        name: "search",
+                                        role: "textinput",
+                                        comment: "input search text",
+                                        searchProps: [
+                                            new SearchProperty()
+                                            {
+                                                name: "xpath",
+                                                value: ".//[text(text)]"
+                                            }
+                                        ]
+                                    }),
+                                new ControlVm(
+                                    {
+                                        name: "screen board",
+                                        role: "button",
+                                    }),
+                                new ControlVm(
+                                    {
+                                        name: "search by image",
+                                        role: "button",
+                                    }),
+                                new ControlVm(
+                                    {
+                                        name: "search",
+                                        role: "button",
+                                    }),
+                                new ControlVm(
+                                    {
+                                        name: "random_search",
+                                        role: "button",
+                                    }),
+                            ]
+                        }
+                    )
+                ]
+            })
             // seleniumConnectionString: 1,
             // planId: 1,
             // navigationLinks: [

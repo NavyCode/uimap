@@ -5,9 +5,9 @@ using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using Navy.MsTest; 
-using MapEditor.Core.Models;
+using MapEditor.Core.Modals;
 
-namespace Navi.UIMapEditor.Model.Tests
+namespace Navi.UIMapEditor.Modal.Tests
 {
     [TestClass()]
     public class UIDocumentTests : TestClass
@@ -20,10 +20,10 @@ namespace Navi.UIMapEditor.Model.Tests
             var doc = new UiMap();
             var root = CreateRootAssembly(doc);
             var assembly = CreateAllAssembly(root); 
-            var tnaWindow = CreateTnaElement(assembly);
-            CreateMainMenuControl(tnaWindow);
-            CreateNavPanelControl(tnaWindow); 
-            CreateMNavigatorElement(assembly);
+            var GoogleWindow = CreateGoogleElement(assembly);
+            CreateMainMenuControl(GoogleWindow);
+            CreateNavPanelControl(GoogleWindow); 
+            CreateMWindowElement(assembly);
             TestCode(root, "GenerateCode.txt");
         }
 
@@ -36,7 +36,7 @@ namespace Navi.UIMapEditor.Model.Tests
             var assembly = CreateAllAssembly(root);
             var folderAssembly = CreateAssembly(assembly, "Folder");
             folderAssembly.IsFolder = true;
-            var tnaWindow = CreateTnaElement(folderAssembly);
+            var GoogleWindow = CreateGoogleElement(folderAssembly);
 
             TestCode(root, "GenerateCodeFolderAssembly.txt");
         }
@@ -77,8 +77,8 @@ namespace Navi.UIMapEditor.Model.Tests
             var doc = new UiMap();
             var root = CreateRootAssembly(doc);
             var assembly = CreateAllAssembly(root);
-            var tnaWindow = CreateTnaElement(assembly);
-            var elem1 = CreateControl(tnaWindow, UIControlType.Menu, "Меню");
+            var GoogleWindow = CreateGoogleElement(assembly);
+            var elem1 = CreateControl(GoogleWindow, UIControlType.Menu, "Меню");
             var elem2  = CreateControl(elem1, UIControlType.MenuItem, "Подменю");
             TestCode(root, "GenerateCodeWithManyElements.txt");
         }
@@ -91,8 +91,8 @@ namespace Navi.UIMapEditor.Model.Tests
             var doc = new UiMap();
             var root = CreateRootAssembly(doc);
             var assembly = CreateAllAssembly(root);
-            var tnaWindow = CreateTnaElement(assembly);
-            var elem1 = CreateControl(tnaWindow, UIControlType.Menu, "Меню");
+            var GoogleWindow = CreateGoogleElement(assembly);
+            var elem1 = CreateControl(GoogleWindow, UIControlType.Menu, "Меню");
             elem1.IsFolder = true;
             var elem2 = CreateControl(elem1, UIControlType.MenuItem, "Подменю");
             TestCode(root, "GenerateCodeWithHidden.txt");
@@ -105,11 +105,11 @@ namespace Navi.UIMapEditor.Model.Tests
             var doc = new UiMap();
             var root = CreateRootAssembly(doc);
             var assembly = CreateAllAssembly(root);
-            var modelWindow = CreateMNavigatorElement(assembly);
-            var tnaWindow = CreateTnaElement(assembly);
-            var elem1 = CreateControl(tnaWindow, UIControlType.Menu, "Меню");
+            var ModalWindow = CreateMWindowElement(assembly);
+            var GoogleWindow = CreateGoogleElement(assembly);
+            var elem1 = CreateControl(GoogleWindow, UIControlType.Menu, "Меню");
             var elem2 = CreateControl(elem1, UIControlType.MenuItem, "РедакторМодели");
-            elem2.Link = modelWindow;
+            elem2.Link = ModalWindow;
             TestCode(root, "GenerateCodeWithLink.txt");
         }
 
@@ -135,9 +135,9 @@ namespace Navi.UIMapEditor.Model.Tests
             return root;
         }
 
-        private static void CreateNavPanelControl(UIElement tnaWindow)
+        private static void CreateNavPanelControl(UIElement GoogleWindow)
         {
-            var navPanel = new UIControl(tnaWindow, "NavPanel", "Панель навигации", UIControlType.Custom.ToString(), uid: Guid.Empty);
+            var navPanel = new UIControl(GoogleWindow, "NavPanel", "Панель навигации", UIControlType.Custom.ToString(), uid: Guid.Empty);
         }
 
 
@@ -159,26 +159,26 @@ namespace Navi.UIMapEditor.Model.Tests
             return control;
         }
 
-        private static void CreateMainMenuControl(UIElement tnaWindow)
+        private static void CreateMainMenuControl(UIElement GoogleWindow)
         {
-            var mainMenu = new UIControl(tnaWindow, "MainMenu", "Главное меню", UIControlType.Menu.ToString());
+            var mainMenu = new UIControl(GoogleWindow, "MainMenu", "Главное меню", UIControlType.Menu.ToString());
             mainMenu.Properties.Add(new UIControlProperty(UISearchProperty.Name.ToString(), "Menu", SearchType.Contains));
             mainMenu.Properties.Add(new UIControlProperty(UISearchProperty.AutomationId.ToString(), "MenuId"));
             
         }
 
-        private static UIElement CreateMNavigatorElement(UIAssembly assembly)
+        private static UIElement CreateMWindowElement(UIAssembly assembly)
         {
-            var modelWindow = new UIElement("ModelNavigator", assembly, UIControlType.Window.ToString(), "Редактор модели", uid: Guid.Empty);
-            modelWindow.Properties.Add(new UIControlProperty(UISearchProperty.Name.ToString(), "ModelNavigator"));
-            return modelWindow;
+            var ModalWindow = new UIElement("ModalWindow", assembly, UIControlType.Window.ToString(), "Редактор модели", uid: Guid.Empty);
+            ModalWindow.Properties.Add(new UIControlProperty(UISearchProperty.Name.ToString(), "ModalWindow"));
+            return ModalWindow;
         }
 
-        private static UIElement CreateTnaElement(UIAssembly assembly)
+        private static UIElement CreateGoogleElement(UIAssembly assembly)
         {
-            var tnaWindow = new UIElement("TNATerminal", assembly, UIControlType.Window.ToString(), "ТНА Терминал", Guid.Empty);
-            tnaWindow.Properties.Add(new UIControlProperty(UISearchProperty.Name.ToString(), "TNA"));
-            return tnaWindow;
+            var GoogleWindow = new UIElement("GoogleTerminal", assembly, UIControlType.Window.ToString(), "ТНА Терминал", Guid.Empty);
+            GoogleWindow.Properties.Add(new UIControlProperty(UISearchProperty.Name.ToString(), "Google"));
+            return GoogleWindow;
         }
     }
 }

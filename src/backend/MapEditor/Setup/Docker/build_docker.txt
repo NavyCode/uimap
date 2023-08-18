@@ -1,0 +1,11 @@
+﻿docker build -t navy/uimap/service .
+docker build -t navy/uimap/client .
+
+docker save navy/uimap/service > navy_uimap_service.tar
+docker save navy/uimap/client > navy_uimap_client.tar
+
+docker load < navy_uimap_client.tar
+docker load < navy_uimap_service.tar
+
+docker container prune
+docker compose up

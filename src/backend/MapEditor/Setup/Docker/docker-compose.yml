@@ -1,0 +1,15 @@
+version: '3.5'
+
+services:
+  service:
+    container_name: navy_uimap_service
+    image: navy/uimap/service
+    ports:
+      - "81:80"
+      - "444:443"
+  client:
+    container_name: navy_uimap_client
+    image: navy/uimap/client
+    ports:
+      - "80:80"
+      - "443:443"

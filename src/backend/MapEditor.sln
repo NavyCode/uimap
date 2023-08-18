@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33801.468
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MapEditor.Core", "MapEditor.Core\MapEditor.Core.csproj", "{D439B4CF-BDAF-4FE7-B881-2FC923BF437E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MapEditor", "MapEditor\MapEditor.csproj", "{88124156-78BE-48E1-9942-CE2AA302FFBE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MapEditor.Tests.Playwrite", "MapEditor.Tests.Playwrite\MapEditor.Tests.Playwrite.csproj", "{A3665D48-74A6-4475-93B9-2EA0EF85AA64}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Links", "Links", "{E04B031E-4BC4-452B-9C09-37A6B99539D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D439B4CF-BDAF-4FE7-B881-2FC923BF437E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D439B4CF-BDAF-4FE7-B881-2FC923BF437E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D439B4CF-BDAF-4FE7-B881-2FC923BF437E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D439B4CF-BDAF-4FE7-B881-2FC923BF437E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88124156-78BE-48E1-9942-CE2AA302FFBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88124156-78BE-48E1-9942-CE2AA302FFBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88124156-78BE-48E1-9942-CE2AA302FFBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88124156-78BE-48E1-9942-CE2AA302FFBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3665D48-74A6-4475-93B9-2EA0EF85AA64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3665D48-74A6-4475-93B9-2EA0EF85AA64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3665D48-74A6-4475-93B9-2EA0EF85AA64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3665D48-74A6-4475-93B9-2EA0EF85AA64}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C650FCC6-2115-47A3-A220-C17240DB5523}
+	EndGlobalSection
+EndGlobal

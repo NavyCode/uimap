@@ -1,4 +1,4 @@
-﻿namespace TestPlanService.Exceptions
+﻿namespace MapEditor.Exceptions
 {
     public class ApiException : Exception
     {

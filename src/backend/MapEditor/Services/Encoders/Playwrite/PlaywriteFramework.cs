@@ -1,8 +1,4 @@
-﻿using MapEditor.Core.Models;
-using MapEditor.Services.FrameWorks;
-using MapEditor.Services.FrameWorks.Playwrite;
-
-namespace PageEditor.Plugins.Navy.FrameWorks.Playwright
+﻿namespace MapEditor.Playwright
 {
     public class NavyPlaywrightFramework : IFrameWorkInfo
     {
@@ -43,7 +39,7 @@ namespace PageEditor.Plugins.Navy.FrameWorks.Playwright
             "TreeItem"
         };
 
-        public string GenerateCode(UIAssembly assembly)
+        public string GenerateCode(NameSpace assembly)
         {
             var encoder = new PwAssemblyCoder(assembly);
             return encoder.Generate();

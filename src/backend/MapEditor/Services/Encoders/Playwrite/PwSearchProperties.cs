@@ -1,4 +1,4 @@
-﻿namespace PageEditor.Plugins.Navy.FrameWorks.Playwright
+﻿namespace MapEditor.Playwright
 {
     public class PwSearchProperties 
     {

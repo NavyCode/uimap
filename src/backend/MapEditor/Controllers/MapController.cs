@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace TestSuiteService.Controllers
+namespace MapEditor.Controllers
 {
     [ApiController]
     [Route("maps")]

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace TestPlanService.Logging
+namespace MapEditor
 {
     public class MicrosoftLogAdapter : Navy.Core.Logger.LoggerBase
     {

@@ -1,15 +1,14 @@
 ﻿using System.Xml.Linq;
-using MapEditor.Core.Models;
 
-namespace MapEditor.Core.Xml
+namespace MapEditor
 {
     public class XmlLoader
     {
-        internal UiMap LoadUiMap(string file)
+        internal Map LoadUiMap(string file)
         {
-            var result = new UiMap();
+            var result = new Map();
             var doc = XDocument.Load(file);
-            result.RootAssembly = new UIAssembly(result, "Assemblies")
+            result.RootAssembly = new NameSpace(result, "Assemblies")
             {
                 IsRoot = true
             };
@@ -22,10 +21,10 @@ namespace MapEditor.Core.Xml
             return result;
         }
 
-        public UIAssembly CreateAssembly(UiMap map, XElement source, UIAssembly parent = null)
+        public NameSpace CreateAssembly(Map map, XElement source, NameSpace parent = null)
         {
             var name = source.Attribute("Name").Value;
-            var result = new UIAssembly(map, name);
+            var result = new NameSpace(map, name);
             var xComment = source.Attribute("Comment");
             if (xComment != null)
                 result.Comment = xComment.Value;
@@ -45,25 +44,25 @@ namespace MapEditor.Core.Xml
             foreach (var item in source.Elements("Element"))
             {
                 var child = CreateControl(item);
-                child.Assembly = result;
+                child.NameSpace = result;
             }
 
             return result;
         }
 
 
-        protected static IEnumerable<UIControlProperty> CreateProperties(XElement source)
+        protected static IEnumerable<ControlProperty> CreateProperties(XElement source)
         {
             foreach (var xProp in source.Elements("Property"))
             {
                 var pName = xProp.Attribute("Name").Value;
                 var pValue = xProp.Value;
-                var prop = new UIControlProperty(pName, pValue);
+                var prop = new ControlProperty(pName, pValue);
                 yield return prop;
             }
         }
 
-        public UIControl CreateControl(XElement source, UIControl element = null, UIControl parent = null)
+        public Control CreateControl(XElement source, Control element = null, Control parent = null)
         {
             var name = source.Attribute("Name").Value;
             var xType = source.Attribute("ControlType").Value;
@@ -81,7 +80,7 @@ namespace MapEditor.Core.Xml
             var hideListener = GetBoolXmlValue(source, "HideActionListener");
             var uid = GetGuidXmlValue(source, "Uid");
 
-            var result = new UIControl()
+            var result = new Control()
             {
                 IsFolder = isHidden,
                 IsMultiple = isMultiple,

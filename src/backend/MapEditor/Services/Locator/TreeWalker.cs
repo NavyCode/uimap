@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using HtmlAgilityPack;
 
-namespace PageEditor.Plugins.Navy.Controls.Web
+namespace MapEditor.Locator
 {
     public class TreeWalker
     {

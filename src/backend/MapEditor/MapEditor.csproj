@@ -42,6 +42,10 @@
   <ItemGroup>
     <None Include="Api\swagger.json" />
   </ItemGroup>
+	
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\core\src\Navy.Core\Navy.Core.csproj" />
+  </ItemGroup>
 
 	<Target Name="CopyFilesAfterBuild" AfterTargets="AfterBuild">
 		<ItemGroup>

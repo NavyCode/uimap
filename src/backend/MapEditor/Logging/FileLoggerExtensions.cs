@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace TestPlanService.Logging
+namespace MapEditor
 {
     public static class FileLoggerExtensions
     {

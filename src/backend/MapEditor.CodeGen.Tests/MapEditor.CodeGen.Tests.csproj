@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+	  <TargetFramework>net7.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+	  <Version>3.0.0.0</Version>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="*-*" />
+		<PackageReference Include="MSTest.TestAdapter" Version="*-*" />
+		<PackageReference Include="MSTest.TestFramework" Version="*-*" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\..\core\src\Navy.MsTest\Navy.MsTest.csproj" />
+	  <ProjectReference Include="..\MapEditor\MapEditor.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Deploy\Sources\" />
+	</ItemGroup>
+  
+ 
+</Project>

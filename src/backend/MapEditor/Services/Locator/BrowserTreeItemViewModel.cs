@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace PageEditor.Plugins.Navy.Controls.Web
+namespace MapEditor.Locator
 {
     public class BrowserTreeItemViewModel 
     {    

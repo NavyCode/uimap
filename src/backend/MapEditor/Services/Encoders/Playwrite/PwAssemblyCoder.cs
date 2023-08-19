@@ -1,14 +1,12 @@
-﻿using MapEditor.Core.Models;
-using PageEditor.Plugins.Navy.Converters;
-using System.Text;
+﻿using System.Text;
 
-namespace MapEditor.Services.FrameWorks.Playwrite
+namespace MapEditor.Playwright
 {
     public class PwAssemblyCoder
     {
-        private readonly UIAssembly assembly;
+        private readonly NameSpace assembly;
 
-        public PwAssemblyCoder(UIAssembly assembly)
+        public PwAssemblyCoder(NameSpace assembly)
         {
             this.assembly = assembly;
         }

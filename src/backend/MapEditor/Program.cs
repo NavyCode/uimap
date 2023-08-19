@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace TestPlanService.Services.Db.Tables
+namespace MapEditor
 {
     public class Program
     {

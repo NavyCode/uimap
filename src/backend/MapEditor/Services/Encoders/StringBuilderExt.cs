@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace PageEditor.Plugins.Navy.Converters
+namespace MapEditor
 {
     public static class StringBuilderExt
     {

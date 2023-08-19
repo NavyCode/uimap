@@ -8,7 +8,7 @@ using OpenQA.Selenium.Remote;
 
 #endregion
 
-namespace PageEditor.Plugins.Navy.Controls.Web
+namespace MapEditor.Locator
 {
     public class BrowserVm 
     {

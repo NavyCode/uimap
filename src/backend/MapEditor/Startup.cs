@@ -5,10 +5,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using TestPlanService.Exceptions;
-using TestPlanService.Logging;
+using MapEditor.Exceptions;
 
-namespace TestPlanService
+namespace MapEditor
 {
     public class Startup
     {

@@ -1,25 +1,24 @@
 ﻿using System.IO;
 
-namespace MapEditor.Core.Models
+namespace MapEditor
 {
-    public class UiMap
+    public class Map
     {
         public override string ToString() => File;
 
-        public UiMap()
+        public Map()
         {
             Version = 1;
-            RootAssembly = new UIAssembly
+            RootAssembly = new NameSpace
             {
                 UiMap = this,
                 IsRoot = true
             };
         }
 
-        public string Name => File != null ? Path.GetFileNameWithoutExtension(File) : "Not saved map";
         public string File { get; set; }
 
-        public UIAssembly RootAssembly { get; set; }
+        public NameSpace RootAssembly { get; set; }
 
         public int Version
         {

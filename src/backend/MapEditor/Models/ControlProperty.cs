@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace MapEditor.Core.Models
+﻿namespace MapEditor
 {
-    public class UIControlProperty
+    public class ControlProperty
     {
-        public UIControlProperty(string property, string value)
+        public ControlProperty(string property, string value)
         {
             Name = property;
             Value = value;
         }
 
-        public UIControlProperty()
+        public ControlProperty()
         {
         }
 

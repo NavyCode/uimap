@@ -1,21 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
-namespace MapEditor.Core.Models
+namespace MapEditor
 {
-    public class UIControl
+    public class Control
     {
 
-        public UIControl()
+        public Control()
         {
-        }
-
-        public UIControl(string name, string comment, UIControl parent)
-        {
-            Name = name;
-            Comment = comment;
-            Parent = parent;
         }
 
         public bool IsFolder { get; set; }
@@ -25,13 +16,13 @@ namespace MapEditor.Core.Models
 
 
         [XmlIgnore]
-        public UIControl Parent
+        public Control Parent
         {
             get;
             set;
         }
 
-        public UIAssembly Assembly
+        public NameSpace NameSpace
         {
             get;
             set;
@@ -43,8 +34,8 @@ namespace MapEditor.Core.Models
 
         public string ControlType { get; set; }
 
-        public List<UIControlProperty> Properties { get; set; }
-        public List<UIControl> Children { get; set; }
+        public List<ControlProperty> Properties { get; set; } = new List<ControlProperty>();
+        public List<Control> Children { get; set; } = new List<Control>();
 
 
         public override string ToString()

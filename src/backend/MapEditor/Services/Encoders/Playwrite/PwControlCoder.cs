@@ -1,16 +1,15 @@
 ﻿using System.Text;
-using PageEditor.Plugins.Navy.Converters;
-using MapEditor.Core.Models;
-using PageEditor.Plugins.Navy.FrameWorks.Playwright;
 
-namespace MapEditor.Services.FrameWorks.Playwrite
+namespace MapEditor.Playwright
 {
     public class PwControlCoder
     {
-        public PwControlCoder(UIControl control, PwControlCoder parent, PwAssemblyCoder assemblyCoder, int tab = 0) 
+        public PwControlCoder(Control control, PwControlCoder parent, PwAssemblyCoder assemblyCoder, int tab = 0) 
         {
             Parent = parent;
             AssemblyCoder = assemblyCoder;
+            Control = control;
+            ParentTabLevel = tab;
         }
 
         PwControlCoder Parent;
@@ -55,15 +54,7 @@ namespace MapEditor.Services.FrameWorks.Playwrite
             }
         }
 
-        public string ClassName
-        {
-            get
-            {
-                if (!IsClass)
-                    return null;
-                return Name();
-            }
-        } 
+        public string ClassName() => GenerateCodeName(Control.Name);
 
         public string EnumerableString => "ControlsCollection";
 
@@ -104,16 +95,17 @@ namespace MapEditor.Services.FrameWorks.Playwrite
 
         protected void AddCodeForSearch(StringBuilder result)
         {
-            if (Control.IsMultiple)
+            if (Control.Parent == null)
                 return;
+            
             var searchStr = $@"";
             var code =
                 $@"/// <summary>{Comment()}</summary>
-public {ClassName} {ClassName} => new {ClassName}(this.{GetSearchAction()}({GetSearchValue()}, {ExtraStr})";
+public {ClassName()} {ClassName()} => new {ClassName()}(this.{GetSearchAction()}({GetSearchValue()}, {ExtraStr})";
             result.AppendLineText(Tabs(code, TabLevel()));
         }
 
-        protected UIControl Control;
+        protected Control Control;
 
         protected int ParentTabLevel;
 
@@ -127,15 +119,13 @@ public {ClassName} {ClassName} => new {ClassName}(this.{GetSearchAction()}({GetS
                 while (item != null)
                 {
                     if (item.IsClass)
-                        return item.ClassName;
+                        return item.ClassName();
                     item = item.Parent;
                 } 
                 return string.Empty;
             }
         }
-
-        protected string Name() => GenerateCodeName(Control.Name);
-
+         
         protected int TabLevel()
         {
                 if (_tabLevel.HasValue)
@@ -153,7 +143,11 @@ public {ClassName} {ClassName} => new {ClassName}(this.{GetSearchAction()}({GetS
 
         public string Comment()
         {
-                var controlComment = $"'{Control.Comment}'<para>{TreePath}</para>";
+            var treePath = TreePath();
+            var paraText = !string.IsNullOrWhiteSpace(treePath)
+                ? $"<para>{TreePath()}</para>"
+                : "";
+                var controlComment = $"'{Control.Comment}'{paraText}";
                 var comment = string.Join(". ",
                     controlComment.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries));
                 return comment;
@@ -223,7 +217,7 @@ public {ClassName} {ClassName} => new {ClassName}(this.{GetSearchAction()}({GetS
             var baseClass = !string.IsNullOrWhiteSpace(Control.BaseClass) ? $" : {Control.BaseClass}" : "";
 
             var code =
-                $@"public partial class {ClassName}{baseClass}
+                $@"public partial class {ClassName()}{baseClass}
 {{";
             code = Tabs(code, TabLevel());
             result.AppendLineText(code);

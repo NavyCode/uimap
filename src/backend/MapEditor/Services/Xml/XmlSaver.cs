@@ -1,16 +1,15 @@
 ﻿using System.IO;
 using System.Text;
 using System.Xml.Linq;
-using MapEditor.Core.Models;
 
-namespace MapEditor.Core.Xml
+namespace MapEditor
 {
     public class XmlSaver
     {
         private static Version _mapVersion = new Version(2, 0, 0, 0);
 
 
-        internal void SaveUiMap(UiMap map, List<UiMap> nearMaps)
+        internal void SaveUiMap(Map map, List<Map> nearMaps)
         {
             var codeFile = map.File;
             var xMap = GetXmlMap(map, nearMaps);
@@ -20,7 +19,7 @@ namespace MapEditor.Core.Xml
             File.WriteAllText(codeFile, code, Encoding.UTF8);
         }
 
-        internal XDocument GetXmlMap(UiMap map, List<UiMap> nearMaps)
+        internal XDocument GetXmlMap(Map map, List<Map> nearMaps)
         {
             var result = new XDocument();
             var root = new XElement("Map");
@@ -33,7 +32,7 @@ namespace MapEditor.Core.Xml
         }
 
 
-        public XElement GetAssemblyXml(UIAssembly assembly)
+        public XElement GetAssemblyXml(NameSpace assembly)
         {
             var result = new XElement("Assembly");
             result.Add(new object[] { new XAttribute("Name", assembly.Name) });
@@ -53,7 +52,7 @@ namespace MapEditor.Core.Xml
             source.Add(new XAttribute(name, value));
         }
 
-        public XElement GetControlXml(UIControl control)
+        public XElement GetControlXml(Control control)
         {
             var result = new XElement("Control");
             var xName = new XAttribute("Name", control.Name);
@@ -73,7 +72,7 @@ namespace MapEditor.Core.Xml
             return result;
         }
 
-        public XElement GetPropertyXml(UIControlProperty property)
+        public XElement GetPropertyXml(ControlProperty property)
         {
             var result = new XElement("Property", property.Value);
             var xPropName = new XAttribute("Name", property.Name);

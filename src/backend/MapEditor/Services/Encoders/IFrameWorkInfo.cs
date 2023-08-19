@@ -1,4 +1,4 @@
-﻿namespace MapEditor.Services.FrameWorks
+﻿namespace MapEditor
 {
     public interface IFrameWorkInfo
     {

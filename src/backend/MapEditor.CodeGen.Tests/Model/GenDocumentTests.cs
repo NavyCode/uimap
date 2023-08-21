@@ -17,7 +17,7 @@ namespace Navi.UIMapEditor.Modal.Tests
 
         
         [TestMethod()]
-        public void GenerateCode()
+        public void GenerateBaseCodeForGoogleTest()
         {
             var doc = new Map();
             var root = CreateRootNameSpace(doc);

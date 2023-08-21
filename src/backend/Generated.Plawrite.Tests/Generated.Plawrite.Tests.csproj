@@ -17,15 +17,14 @@
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="*-*" />
 		<PackageReference Include="MSTest.TestAdapter" Version="*-*" />
 		<PackageReference Include="MSTest.TestFramework" Version="*-*" />
+		<PackageReference Include="Microsoft.Playwright" Version="*-*" />
+		<PackageReference Include="Microsoft.Playwright.TestAdapter" Version="*-*" /> 
 	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\..\core\src\Navy.MsTest\Navy.MsTest.csproj" />
+	  <ProjectReference Include="..\..\..\..\core\src\Navy.Playwrite\Navy.Playwrite.csproj" />
 	  <ProjectReference Include="..\MapEditor\MapEditor.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Generated\" />
 	</ItemGroup>
   
  

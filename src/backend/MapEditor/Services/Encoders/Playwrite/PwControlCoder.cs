@@ -20,9 +20,9 @@ namespace MapEditor.Playwright
             if (type == null)
                 return null;
             if (type.Name == PwSearchProperties.XPath)
-                return "xpath=" + type.Value;
+                return "@\"xpath=" + type.Value.Replace("\"", "\"\"") + "\"";
             else
-                return type.Value;
+                return "@\"" + type.Value.Replace("\"", "\"\"") + "\"";
         }
 
         public string GetSearchAction()
@@ -43,15 +43,11 @@ namespace MapEditor.Playwright
             return null;
         }
 
-        public string ExtraStr
+        public string MetaStr()
         {
-            get
-            {
                 var timeout = Control.Properties.FirstOrDefault(p => p.Name == PwSearchProperties.TimeOut);
-                if (timeout == null)
-                    return "Extra.Default";
-                return string.Format($"Extra.ByTimeOut(TimeSpan.FromMilliseconds({timeout.Value}))");
-            }
+                var strTimeOut = timeout == null ? "" : $", TimeSpan.FromMilliseconds({timeout.Value})";
+                return string.Format($"new Meta(\"{Control.Name}\", \"{Control.Comment}\", \"{TreePath()}\"{strTimeOut})");
         }
 
         public string ClassName() => GenerateCodeName(Control.Name);
@@ -97,11 +93,23 @@ namespace MapEditor.Playwright
         {
             if (Control.Parent == null)
                 return;
-            
-            var searchStr = $@"";
+
+            var propertyName = IsClass ? ClassName() : "Control";
+            var thisStr = Parent.IsPage ? "Page" : "this";
+
+            var summary = $@"/// <summary>{Comment()}</summary>";
             var code =
-                $@"/// <summary>{Comment()}</summary>
-public {ClassName()} {ClassName()} => new {ClassName()}(this.{GetSearchAction()}({GetSearchValue()}, {ExtraStr})";
+                $@"{summary}
+";
+            if (!Control.IsMultiple) 
+            {
+                code += $@"public {propertyName} {ClassName()} => Control.Create<{propertyName}>({thisStr}.{GetSearchAction()}({GetSearchValue()}), {MetaStr()});";
+            }
+            else
+            {
+                code += $@"public ControlCollection<{propertyName}> {ClassName()} => new ControlCollection<{propertyName}>({thisStr}.{GetSearchAction()}({GetSearchValue()}), {MetaStr()});";
+
+            }
             result.AppendLineText(Tabs(code, TabLevel()));
         }
 
@@ -215,13 +223,17 @@ public {ClassName()} {ClassName()} => new {ClassName()}(this.{GetSearchAction()}
             if (!IsClass)
                 return;
             var baseClass = !string.IsNullOrWhiteSpace(Control.BaseClass) ? $" : {Control.BaseClass}" : "";
+            if (IsPage)
+                baseClass =" : WebPage"; 
 
             var code =
                 $@"public partial class {ClassName()}{baseClass}
 {{";
             code = Tabs(code, TabLevel());
             result.AppendLineText(code);
-        } 
+        }
+
+        bool IsPage => Control.ControlType.ToLower() == "page";
 
         public static string GenerateCodeName(string name)
         {

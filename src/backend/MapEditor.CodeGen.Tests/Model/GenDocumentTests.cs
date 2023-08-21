@@ -142,7 +142,9 @@ namespace Navi.UIMapEditor.Modal.Tests
 
         private Control CreateSearchButtonControl(Control GoogleWindow)
         {
-            return CreateControl(GoogleWindow, "Button", "Search", "Search button", ".//input[@value='Поиск в Google']", null);
+            var result = CreateControl(GoogleWindow, "Button", "SearchButton", "Search button", ".//input[@value='Поиск в Google']", null);
+            result.IsMultiple = true;
+            return result;
         }
 
 
@@ -158,7 +160,7 @@ namespace Navi.UIMapEditor.Modal.Tests
                 ControlType = controlType,
             };
             if (xpath != null)
-                control.Properties.Add(new ControlProperty(PwSearchProperties.XPath, name));
+                control.Properties.Add(new ControlProperty(PwSearchProperties.XPath, xpath));
             ns?.Controls.Add(control);
             parent?.Children.Add(control);
             return control;

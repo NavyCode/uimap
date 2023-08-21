@@ -11,8 +11,7 @@ namespace MapEditor
             Version = 1;
             RootAssembly = new NameSpace
             {
-                UiMap = this,
-                IsRoot = true
+                UiMap = this
             };
         }
 

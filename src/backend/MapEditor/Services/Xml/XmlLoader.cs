@@ -8,10 +8,7 @@ namespace MapEditor
         {
             var result = new Map();
             var doc = XDocument.Load(file);
-            result.RootAssembly = new NameSpace(result, "Assemblies")
-            {
-                IsRoot = true
-            };
+            result.RootAssembly = new NameSpace(result, "Assemblies");
             result.File = file;
             foreach (var item in doc.Root.Elements("Assembly"))
             {

@@ -61,7 +61,7 @@ namespace MapEditor
 
         public Map UiMap { get; set; }
 
-        public bool IsRoot { get; internal set; }
+        public bool IsRoot => Parent == null;
 
         public string Name { get; set; }
         public string Comment { get; set; }

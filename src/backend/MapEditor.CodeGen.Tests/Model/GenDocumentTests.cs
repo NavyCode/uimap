@@ -142,7 +142,7 @@ namespace Navi.UIMapEditor.Modal.Tests
 
         private Control CreateSearchButtonControl(Control GoogleWindow)
         {
-            var result = CreateControl(GoogleWindow, "Button", "SearchButton", "Search button", ".//input[@value='Поиск в Google']", null);
+            var result = CreateControl(GoogleWindow, "Button", "SearchButtons", "Search button", ".//input[@value='Поиск в Google']", null);
             result.IsMultiple = true;
             return result;
         }

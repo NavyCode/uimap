@@ -20,6 +20,7 @@ namespace Maps.Google.Search
         /// <summary>'Search text'</summary>
         public Control SearchText => Control.Create<Control>(Page.Locator(@"xpath=//*[@id=""APjFqb""]"), new Meta("SearchText", "Search text", ""));
         /// <summary>'Search button'</summary>
-        public ControlCollection<Control> SearchButton => new ControlCollection<Control>(Page.Locator(@"xpath=.//input[@value='Поиск в Google']"), new Meta("SearchButton", "Search button", ""));
+        public ControlCollection<Control> SearchButtons => new ControlCollection<Control>(Page.Locator(@"xpath=.//input[@value='Поиск в Google']"), new Meta("SearchButtons", "Search button", ""));
     }
 }
+

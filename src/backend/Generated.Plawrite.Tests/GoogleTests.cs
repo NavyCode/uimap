@@ -17,8 +17,8 @@ namespace UI.Common
             var google = await Page.GotoAsync("https://google.com");
             var map = Page.As<SearchPage>();
             await map.SearchText.FillAsync("nuget.org");
-            var searchButton = await map.SearchButton.WaitFirstAsync((p) => p.IsVisibleAsync().Result);
-            searchButton.ClickAsync();
+            var searchButton = await map.SearchButtons.WaitFirstAsync((p) => p.IsVisibleAsync().Result);
+            await searchButton.ClickAsync();
         }
     }
 }
